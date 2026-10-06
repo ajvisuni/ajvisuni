@@ -1,0 +1,205 @@
+<svg fill="none" viewBox="0 0 940 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <foreignObject width="100%" height="100%">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <style>
+        :root {
+          --bg-card: #0b0f17;
+          --bg-bar: #161c28;
+          --border: #232d3f;
+          --text: #e2e8f0;
+          --muted: #8b9bb4;
+          --green: #22c55e;
+          --cyan: #38bdf8;
+          --purple: #c084fc;
+          --amber: #fbbf24;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        .terminal {
+          background-color: var(--bg-card);
+          border: 1px solid var(--border);
+          border-radius: 10px;
+          font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+          color: var(--text);
+          font-size: 13px;
+          box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+          overflow: hidden;
+        }
+
+        .header {
+          background-color: var(--bg-bar);
+          padding: 10px 16px;
+          display: flex;
+          align-items: center;
+          border-bottom: 1px solid var(--border);
+        }
+
+        .dots { display: flex; gap: 7px; }
+        .dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+        .red { background: #ff5f56; }
+        .yellow { background: #ffbd2e; }
+        .green-btn { background: #27c93f; }
+        .title { flex-grow: 1; text-align: center; font-size: 11px; color: var(--muted); margin-right: 48px; }
+
+        .body { padding: 18px 22px; }
+
+        .prompt-line {
+          font-size: 13px;
+          margin-bottom: 12px;
+          color: var(--muted);
+        }
+        .user { color: var(--green); font-weight: 700; }
+        .path { color: var(--purple); }
+
+        @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+        .cursor { display: inline-block; width: 7px; height: 14px; background: var(--cyan); margin-left: 4px; vertical-align: middle; animation: blink 1s infinite; }
+
+        .hud-pills {
+          display: flex;
+          gap: 8px;
+          flex-wrap: wrap;
+          margin-bottom: 16px;
+          padding-bottom: 12px;
+          border-bottom: 1px dashed var(--border);
+        }
+        .pill {
+          background: rgba(56, 189, 248, 0.08);
+          border: 1px solid rgba(56, 189, 248, 0.2);
+          border-radius: 4px;
+          padding: 3px 8px;
+          font-size: 11px;
+          font-weight: 600;
+        }
+        .pill-green { background: rgba(34, 197, 94, 0.08); border-color: rgba(34, 197, 94, 0.25); color: var(--green); }
+        .pill-purple { background: rgba(192, 132, 252, 0.08); border-color: rgba(192, 132, 252, 0.25); color: var(--purple); }
+        .pill-amber { background: rgba(251, 191, 36, 0.08); border-color: rgba(251, 191, 36, 0.25); color: var(--amber); }
+
+        .grid {
+          display: grid;
+          grid-template-columns: 240px 1fr;
+          gap: 20px;
+        }
+
+        .compact-ascii {
+          color: var(--cyan);
+          font-size: 10px;
+          line-height: 1.15;
+          white-space: pre;
+          border-right: 1px dashed var(--border);
+          padding-right: 12px;
+        }
+
+        .specs {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+        }
+
+        .spec-row {
+          padding: 3px 6px;
+          border-radius: 4px;
+          line-height: 1.45;
+          font-size: 12.5px;
+        }
+
+        .lbl { color: var(--cyan); font-weight: 600; min-width: 110px; display: inline-block; }
+        .val { color: var(--text); }
+        .em  { color: var(--green); font-weight: 600; }
+        .dim { color: var(--muted); font-size: 11.5px; }
+
+        .cta-row {
+          margin-top: 14px;
+          padding-top: 10px;
+          border-top: 1px dashed var(--border);
+          display: flex;
+          gap: 14px;
+          font-size: 11.5px;
+          color: var(--cyan);
+          font-weight: 600;
+        }
+      </style>
+
+      <div class="terminal">
+        <div class="header">
+          <div class="dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green-btn"></span>
+          </div>
+          <div class="title">advaith@darwin: ~/specs (ring0)</div>
+        </div>
+
+        <div class="body">
+          <div class="prompt-line">
+            <span class="user">advaith@kernel</span>:<span class="path">~</span>$ neofetch --profile summary
+            <span class="cursor"></span>
+          </div>
+
+          <div class="hud-pills">
+            <span class="pill pill-green">GPA: 4.67 / 5.00 (Recent: 4.92)</span>
+            <span class="pill">B.Sc. CSE Undergraduate (Sem 4)</span>
+            <span class="pill pill-purple">Bare-Metal x86 &amp; ARM R&amp;D</span>
+            <span class="pill pill-amber">Vistula University, Warsaw</span>
+          </div>
+
+          <div class="grid">
+            <pre class="compact-ascii">
+   PHYSICAL MEMORY &amp; ARCH
+0x00007C00 +-------------+
+           | boot.asm    | [MBR Stage]
+0x000B8000 +-------------+
+           | VGA Display | [Text-Mode]
+0x00100000 +-------------+
+           | Darter-OS   | [Kernel ELF]
+           | GDT/IDT ISR | [Protected]
+0xFFFFFFFF +-------------+
+   CR0.PE=1 | Ring-0 Kernel
+            </pre>
+
+            <div class="specs">
+              <div class="spec-row">
+                <span class="lbl">Candidate:</span>
+                <span class="val"><strong>Advaith Joseph</strong></span>
+                <span class="dim">(B.Sc. Computer Science Engineering Student)</span>
+              </div>
+
+              <div class="spec-row">
+                <span class="lbl">Languages:</span>
+                <span class="em">C (Kernel/Bare-Metal), x86 Assembly, C#, Python, SQL</span>
+              </div>
+
+              <div class="spec-row">
+                <span class="lbl">Systems Core:</span>
+                <span class="val">OS Architecture, Protected-Mode Bootstrapping, Memory Paging, Linker Scripts</span>
+              </div>
+
+              <div class="spec-row">
+                <span class="lbl">Key Project:</span>
+                <span class="em">Darter-OS</span>
+                <span class="val">— 32-bit x86 OS built from scratch (boot.asm + linker.ld)</span>
+              </div>
+
+              <div class="spec-row">
+                <span class="lbl">Hardware R&amp;D:</span>
+                <span class="val">Bio-Signal DAQ PCB (Multi-layer analog, deterministic SPI/UART polling)</span>
+              </div>
+
+              <div class="spec-row">
+                <span class="lbl">Academic Standout:</span>
+                <span class="dim">Straight 5.0/5.0 in OS, Computer Architecture, Networks, &amp; Security</span>
+              </div>
+
+              <div class="cta-row">
+                <span>↳ [1] @ajvisuni</span>
+                <span>↳ [2] Darter-OS</span>
+                <span>↳ [3] Bio-Signal DAQ</span>
+                <span>↳ [4] LinkedIn</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </foreignObject>
+</svg>
